@@ -37,8 +37,8 @@ class NNUnet(pl.LightningModule):
         preds = (nn.Sigmoid()(preds) > 0.5).int()
         lbl_np = lbl.detach().cpu().numpy()
         preds_np = preds.detach().cpu().numpy()
-        np.save(f'./{self.args.pred_dir}/{patient_id[0]}-prediction.npy', preds_np)
-        np.save(f'./{self.args.pred_dir}/{patient_id[0]}-label.npy', lbl_np)
+        np.save(f'{self.args.pred_dir}/{patient_id[0]}-prediction.npy', preds_np)
+        np.save(f'{self.args.pred_dir}/{patient_id[0]}-label.npy', lbl_np)
         
     def training_epoch_end(self, outputs):
         torch.cuda.empty_cache()

@@ -20,25 +20,25 @@ class NNUnet(pl.LightningModule):
         self.dice = Dice(n_class=args.out_channels)
     
     def training_step(self, batch, batch_idx):
-        img, lbl = batch
+        img, lbl, _ = batch
         logits = self.model(img)
         loss = self.loss(logits, lbl)
         return loss
     
     def validation_step(self, batch, batch_idx):
-        img, lbl = batch
+        img, lbl, _ = batch
         logits = self.model(img)
         loss = self.loss(logits, lbl)
         self.dice.update(logits, lbl[:, 0], loss)
         
     def predict_step(self, batch, batch_idx):
-        img, lbl = batch
+        img, lbl, patient_id = batch
         preds = self.model(img)
         preds = (nn.Sigmoid()(preds) > 0.5).int()
         lbl_np = lbl.detach().cpu().numpy()
         preds_np = preds.detach().cpu().numpy()
-        np.save('./predictions.npy', preds_np)
-        np.save('./labels.npy', lbl_np)
+        np.save(f'./{self.args.pred_dir}/{patient_id[0]}-prediction.npy', preds_np)
+        np.save(f'./{self.args.pred_dir}/{patient_id[0]}-label.npy', lbl_np)
         
     def training_epoch_end(self, outputs):
         torch.cuda.empty_cache()

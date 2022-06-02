@@ -60,6 +60,7 @@ class BraTS20Dataset(Dataset):
     
     def __getitem__(self, idx):
         patient = self.patients[idx]
+        patient_id = patient.split('/')[-1]
         patient_data, patient_metadata = self.load_patient(patient)
         
         if self.mode == "train":
@@ -79,7 +80,7 @@ class BraTS20Dataset(Dataset):
              
         img = torch.from_numpy(img.copy()).type(torch.float32)
         lbl = torch.from_numpy(lbl.copy()).type(torch.float32)
-        return img, lbl
+        return img, lbl, patient_id
          
     @staticmethod
     def load_patient(patient):

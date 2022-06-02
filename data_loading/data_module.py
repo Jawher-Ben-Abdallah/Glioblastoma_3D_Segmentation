@@ -13,8 +13,8 @@ class BraTS20DataModule(LightningDataModule):
 
     def setup(self, stage=None):
         patients = get_patients(self.args.base_dir)
-        patients_train, patients_val_test = train_test_split(patients, test_size=21, random_state=self.args.seed)
-        patients_val, patients_test = train_test_split(patients_val_test, test_size=1, random_state=self.args.seed)
+        patients_train, patients_val_test = train_test_split(patients, test_size=25, random_state=self.args.seed)
+        patients_val, patients_test = train_test_split(patients_val_test, test_size=5, random_state=self.args.seed)
         self.brats_train = BraTS20Dataset(patients_train, self.args, mode='train')
         self.brats_val = BraTS20Dataset(patients_val, self.args, mode='validate')
         self.brats_test = BraTS20Dataset(patients_test, self.args, mode='validate')

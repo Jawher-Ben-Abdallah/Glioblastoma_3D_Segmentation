@@ -6,6 +6,7 @@ def get_main_args():
     arg("--input_dir", type=str, default=None, help="Original BraTS Files Directory")
     arg("--output_dir", type=str, default=None, help="Preprocessed Files Directory")
     arg("--base_dir", type=str, default="BraTS2020_Preprocessed", help="Train Data Directory")
+    arg("--pred_dir", type=str, default=None, help="Model Predictions Save Directory")
     arg("--patch_size", type=int, default=128, help="Shape of Training Patches")
     arg("--val_size", type=int, default=224, help="Shape of Validation Patches")
     arg("--batch_size", type=int, default=2, help="batch size")

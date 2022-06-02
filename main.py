@@ -16,7 +16,10 @@ if __name__ == "__main__":
     trainer = Trainer(callbacks=callbacks, enable_checkpointing=True, max_epochs=1, 
                     enable_progress_bar=True, gpus=1, accelerator="gpu", amp_backend='apex')
 
-    trainer.fit(model, dm)
+    if args.exec_mode == 'train':
+        trainer.fit(model, dm)
+    if args.exec_mode == 'predict':
+        trainer.predict(model, datamodule=dm, ckpt_path=args.ckpt_path)
 
     #args = get_main_args()
     #dm = BraTS20DataModule(args)

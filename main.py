@@ -6,8 +6,9 @@ from data_loading.data_module import BraTS20DataModule
 from nnunet.model import NNUnet
 
 if __name__ == "__main__":
+    args = get_main_args()
     callbacks = []
-    model = NNUnet()
+    model = NNUnet(args)
     model_ckpt = ModelCheckpoint(dirpath="./", filename="best_model",
                                 monitor="dice_mean", mode="max", save_last=True)
     callbacks.append(model_ckpt)

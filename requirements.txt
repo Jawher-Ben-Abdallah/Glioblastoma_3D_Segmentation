@@ -1,4 +1,5 @@
-protobuf<4.21.0
+SimpleITK
+numpy
 matplotlib
 scikit-image
 monai

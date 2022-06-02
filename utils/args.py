@@ -3,6 +3,8 @@ from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 def get_main_args():
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     arg = parser.add_argument
+    arg("--input_dir", type=str, default=None, help="Original BraTS Files Directory")
+    arg("--output_dir", type=str, default=None, help="Preprocessed Files Directory")
     arg("--base_dir", type=str, default="BraTS2020_Preprocessed", help="Train Data Directory")
     arg("--patch_size", type=int, default=128, help="Shape of Training Patches")
     arg("--val_size", type=int, default=224, help="Shape of Validation Patches")

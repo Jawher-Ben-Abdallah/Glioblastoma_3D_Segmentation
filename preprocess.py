@@ -97,3 +97,5 @@ if __name__ == "__main__":
     p.starmap(load_and_preprocess, zip(list_of_lists, patient_names, [args.output_dir] * len(list_of_lists)))
     p.close()
     p.join()
+
+    print('Preprocessing Finished!')

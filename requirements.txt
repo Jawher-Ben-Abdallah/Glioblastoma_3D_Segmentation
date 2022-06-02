@@ -1,0 +1,8 @@
+protobuf<4.21.0
+matplotlib
+scikit-image
+monai
+torchmetrics
+pytorch-lightning
+pandas
+scikit-learn

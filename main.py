@@ -12,7 +12,7 @@ if __name__ == "__main__":
     model_ckpt = ModelCheckpoint(dirpath="./", filename="best_model",
                                 monitor="dice_mean", mode="max", save_last=True)
     callbacks.append(model_ckpt)
-    dm = BraTS20DataModule()
+    dm = BraTS20DataModule(args)
     trainer = Trainer(callbacks=callbacks, enable_checkpointing=True, max_epochs=1, 
                     enable_progress_bar=True, gpus=1, accelerator="gpu", amp_backend='apex')
 

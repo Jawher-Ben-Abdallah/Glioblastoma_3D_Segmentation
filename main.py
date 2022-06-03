@@ -18,5 +18,6 @@ if __name__ == "__main__":
 
     if args.exec_mode == 'train':
         trainer.fit(model, dm)
+        print("Training Finished!")
     if args.exec_mode == 'predict':
         trainer.predict(model, datamodule=dm, ckpt_path=args.ckpt_path)

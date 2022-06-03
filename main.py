@@ -1,5 +1,5 @@
 from pytorch_lightning.callbacks import ModelCheckpoint
-from pytorch_lightning import Trainer, LightningDataModule
+from pytorch_lightning import Trainer
 
 from utils.args import get_main_args
 from data_loading.data_module import BraTS20DataModule
@@ -20,9 +20,3 @@ if __name__ == "__main__":
         trainer.fit(model, dm)
     if args.exec_mode == 'predict':
         trainer.predict(model, datamodule=dm, ckpt_path=args.ckpt_path)
-
-    #args = get_main_args()
-    #dm = BraTS20DataModule(args)
-    #dm.setup()
-    #img, lbl = next(iter(dm.train_dataloader()))
-    #print(img.shape, lbl.shape)

@@ -64,8 +64,9 @@ class NNUnet(pl.LightningModule):
         metrics.update({f"L{i+1}": round(m.item(), 2) for i, m in enumerate(dice)})
         metrics.update({"val_loss": round(loss.item(), 4)})
         
-        print(f"Epoch: {self.current_epoch + 1}")
-        print(f"Validation Performace: Mean Dice {metrics['Mean_Dice']}, Validation Loss {metrics['val_loss']}")
+        print(f"Epoch: {self.current_epoch + 1}, Validation Performace: Mean Dice {metrics['Mean_Dice']}, \
+            Validation Loss {metrics['val_loss']}")
+        print('-' * 70)
         self.log("dice_mean", dice_mean)
         
         torch.cuda.empty_cache()

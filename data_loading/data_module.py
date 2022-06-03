@@ -9,6 +9,8 @@ from utils.utils import get_patients
 
 class BraTS20DataModule(LightningDataModule):
     def __init__(self, args):
+        super().__init__()
+        self.prepare_data_per_node = True
         self.args = args
 
     def setup(self, stage=None):

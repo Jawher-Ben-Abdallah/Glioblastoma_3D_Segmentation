@@ -14,7 +14,7 @@ if __name__ == "__main__":
     callbacks.append(model_ckpt)
     dm = BraTS20DataModule(args)
     trainer = Trainer(callbacks=callbacks, enable_checkpointing=True, max_epochs=args.num_epochs, 
-                    gpus=1, accelerator="gpu", amp_backend='apex')
+                    enable_progress_bar=False, gpus=1, accelerator="gpu", amp_backend='apex')
 
     if args.exec_mode == 'train':
         trainer.fit(model, dm)
